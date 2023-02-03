@@ -67,13 +67,12 @@ function init() {
     ]);
     const t1 = new THREE.BufferAttribute(indices2, 1);
 
-    const attrib = new THREE.BufferAttribute(indices, 1)
+    const attrib = new THREE.BufferAttribute(indices, 1);
     const a = attrib.copy(t1);
     const xc = attrib.array;
-    
 
     geometry.setIndex(attrib);
-    geometry.getAttribute('instanceMatrix').array
+    geometry.getAttribute('instanceMatrix').array;
 
     // material
 

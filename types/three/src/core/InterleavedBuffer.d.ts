@@ -40,7 +40,7 @@ export class InterleavedBuffer<TArray extends TypedArray = TypedArray> {
     copy(source: InterleavedBuffer): this;
     copyAt(index1: number, attribute: InterleavedBufferAttribute, index2: number): this;
     set(value: ArrayLike<number>, index: number): this;
-    
+
     toJSON(data: object): {
         uuid: string;
         buffer: string;
