@@ -1,5 +1,5 @@
 import { BufferGeometry } from './BufferGeometry';
-import { BufferAttribute } from './BufferAttribute';
+import { BufferAttribute, TypedArray } from './BufferAttribute';
 
 /**
  * see {@link https://github.com/mrdoob/three.js/blob/master/examples/jsm/utils/BufferGeometryUtils.js|examples/jsm/utils/BufferGeometryUtils.js}
@@ -7,7 +7,7 @@ import { BufferAttribute } from './BufferAttribute';
 export namespace BufferGeometryUtils {
     function mergeBufferGeometries(geometries: BufferGeometry[]): BufferGeometry;
     function computeTangents(geometry: BufferGeometry): null;
-    function mergeBufferAttributes(attributes: BufferAttribute[]): BufferAttribute;
+    function mergeBufferAttributes<TArray extends TypedArray>(attributes: BufferAttribute<TArray>[]): BufferAttribute<TArray> | null;
 }
 
 /**
@@ -27,8 +27,8 @@ export namespace GeometryUtils {
 /**
  * see {@link https://github.com/mrdoob/three.js/blob/master/src/core/InstancedBufferAttribute.js|src/core/InstancedBufferAttribute.js}
  */
-export class InstancedBufferAttribute extends BufferAttribute {
-    constructor(array: ArrayLike<number>, itemSize: number, normalized?: boolean, meshPerAttribute?: number);
+export class InstancedBufferAttribute<TArray extends TypedArray> extends BufferAttribute<TArray> {
+    constructor(array: TArray, itemSize: number, normalized?: boolean, meshPerAttribute?: number);
 
     /**
      * @default 1

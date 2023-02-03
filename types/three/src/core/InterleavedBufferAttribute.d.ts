@@ -1,12 +1,12 @@
-import { BufferAttribute } from './BufferAttribute';
+import { BufferAttribute, TypedArray } from './BufferAttribute';
 import { InterleavedBuffer } from './InterleavedBuffer';
 import { Matrix4 } from './../math/Matrix4';
 import { Matrix } from './../math/Matrix3';
 /**
  * see {@link https://github.com/mrdoob/three.js/blob/master/src/core/InterleavedBufferAttribute.js|src/core/InterleavedBufferAttribute.js}
  */
-export class InterleavedBufferAttribute {
-    constructor(interleavedBuffer: InterleavedBuffer, itemSize: number, offset: number, normalized?: boolean);
+export class InterleavedBufferAttribute<TArray extends TypedArray = TypedArray> {
+    constructor(interleavedBuffer: InterleavedBuffer<TArray>, itemSize: number, offset: number, normalized?: boolean);
 
     /**
      * @default ''
@@ -22,13 +22,18 @@ export class InterleavedBufferAttribute {
     normalized: boolean;
 
     get count(): number;
-    get array(): ArrayLike<number>;
+    get array(): TArray;
     set needsUpdate(value: boolean);
 
     readonly isInterleavedBufferAttribute: true;
 
     applyMatrix4(m: Matrix4): this;
-    clone(data?: object): BufferAttribute;
+    applyNormalMatrix(matrix: Matrix): this;
+    transformDirection(matrix: Matrix): this;
+
+    clone(): BufferAttribute<TArray>;
+    clone(data: object): InterleavedBufferAttribute<TArray>;
+
     getX(index: number): number;
     setX(index: number, x: number): this;
     getY(index: number): number;
@@ -40,6 +45,7 @@ export class InterleavedBufferAttribute {
     setXY(index: number, x: number, y: number): this;
     setXYZ(index: number, x: number, y: number, z: number): this;
     setXYZW(index: number, x: number, y: number, z: number, w: number): this;
+
     toJSON(data?: object): {
         isInterleavedBufferAttribute: true;
         itemSize: number;
@@ -47,6 +53,4 @@ export class InterleavedBufferAttribute {
         offset: number;
         normalized: boolean;
     };
-    applyNormalMatrix(matrix: Matrix): this;
-    transformDirection(matrix: Matrix): this;
 }

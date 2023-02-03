@@ -1,13 +1,14 @@
 import { InterleavedBufferAttribute } from './InterleavedBufferAttribute';
 import { Usage } from '../constants';
+import { TypedArray } from './BufferAttribute';
 
 /**
  * see {@link https://github.com/mrdoob/three.js/blob/master/src/core/InterleavedBuffer.js|src/core/InterleavedBuffer.js}
  */
-export class InterleavedBuffer {
-    constructor(array: ArrayLike<number>, stride: number);
+export class InterleavedBuffer<TArray extends TypedArray = TypedArray> {
+    constructor(array: TArray, stride: number);
 
-    array: ArrayLike<number>;
+    array: TArray;
     stride: number;
 
     /**
@@ -34,11 +35,12 @@ export class InterleavedBuffer {
     needsUpdate: boolean;
     uuid: string;
 
-    setUsage(usage: Usage): InterleavedBuffer;
-    clone(data: object): InterleavedBuffer;
+    setUsage(usage: Usage): this;
+    clone(data: object): InterleavedBuffer<TArray>;
     copy(source: InterleavedBuffer): this;
-    copyAt(index1: number, attribute: InterleavedBufferAttribute, index2: number): InterleavedBuffer;
-    set(value: ArrayLike<number>, index: number): InterleavedBuffer;
+    copyAt(index1: number, attribute: InterleavedBufferAttribute, index2: number): this;
+    set(value: ArrayLike<number>, index: number): this;
+    
     toJSON(data: object): {
         uuid: string;
         buffer: string;

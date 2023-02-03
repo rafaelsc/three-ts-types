@@ -61,7 +61,19 @@ function init() {
         22, 22, 21, 23,
     ]);
 
-    geometry.setIndex(new THREE.BufferAttribute(indices, 1));
+    const indices2 = new Float32Array([
+        0, 2, 1, 2, 3, 1, 4, 6, 5, 6, 7, 5, 8, 10, 9, 10, 11, 9, 12, 14, 13, 14, 15, 13, 16, 17, 18, 18, 17, 19, 20, 21,
+        22, 22, 21, 23,
+    ]);
+    const t1 = new THREE.BufferAttribute(indices2, 1);
+
+    const attrib = new THREE.BufferAttribute(indices, 1)
+    const a = attrib.copy(t1);
+    const xc = attrib.array;
+    
+
+    geometry.setIndex(attrib);
+    geometry.getAttribute('instanceMatrix').array
 
     // material
 

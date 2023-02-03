@@ -1,4 +1,4 @@
-import { BufferAttribute } from './BufferAttribute';
+import { BufferAttribute, TypedArray, UIntTypedArray, integer } from './BufferAttribute';
 import { Box3 } from './../math/Box3';
 import { Sphere } from './../math/Sphere';
 import { Matrix4 } from './../math/Matrix4';
@@ -23,7 +23,7 @@ export class BufferGeometry extends EventDispatcher {
     constructor();
 
     /**
-     * Unique number of this buffergeometry instance
+     * Unique number of this BufferGeometry instance
      */
     id: number;
     uuid: string;
@@ -41,7 +41,7 @@ export class BufferGeometry extends EventDispatcher {
     /**
      * @default null
      */
-    index: BufferAttribute | null;
+    index: BufferAttribute<UIntTypedArray> | null;
 
     /**
      * @default {}
@@ -88,13 +88,13 @@ export class BufferGeometry extends EventDispatcher {
     userData: { [key: string]: any };
     readonly isBufferGeometry: true;
 
-    getIndex(): BufferAttribute | null;
-    setIndex(index: BufferAttribute | number[] | null): BufferGeometry;
+    getIndex(): BufferAttribute<UIntTypedArray> | null;
+    setIndex(index: BufferAttribute<UIntTypedArray> | Array<integer> | null): this;
 
     setAttribute(
         name: BuiltinShaderAttributeName | (string & {}),
-        attribute: BufferAttribute | InterleavedBufferAttribute,
-    ): BufferGeometry;
+        attribute: BufferAttribute<TypedArray> | InterleavedBufferAttribute,
+    ): this;
     getAttribute(name: BuiltinShaderAttributeName | (string & {})): BufferAttribute | InterleavedBufferAttribute;
     deleteAttribute(name: BuiltinShaderAttributeName | (string & {})): BufferGeometry;
     hasAttribute(name: BuiltinShaderAttributeName | (string & {})): boolean;
@@ -156,40 +156,4 @@ export class BufferGeometry extends EventDispatcher {
      * You need to call this when you want the bufferGeometry removed while the application is running.
      */
     dispose(): void;
-
-    /**
-     * @deprecated Use {@link BufferGeometry#groups .groups} instead.
-     */
-    drawcalls: any;
-
-    /**
-     * @deprecated Use {@link BufferGeometry#groups .groups} instead.
-     */
-    offsets: any;
-
-    /**
-     * @deprecated Use {@link BufferGeometry#setIndex .setIndex()} instead.
-     */
-    addIndex(index: any): void;
-
-    /**
-     * @deprecated Use {@link BufferGeometry#addGroup .addGroup()} instead.
-     */
-    addDrawCall(start: any, count: any, indexOffset?: any): void;
-
-    /**
-     * @deprecated Use {@link BufferGeometry#clearGroups .clearGroups()} instead.
-     */
-    clearDrawCalls(): void;
-
-    /**
-     * @deprecated Use {@link BufferGeometry#setAttribute .setAttribute()} instead.
-     */
-    addAttribute(name: string, attribute: BufferAttribute | InterleavedBufferAttribute): BufferGeometry;
-    addAttribute(name: any, array: any, itemSize: any): any;
-
-    /**
-     * @deprecated Use {@link BufferGeometry#deleteAttribute .deleteAttribute()} instead.
-     */
-    removeAttribute(name: string): BufferGeometry;
 }
