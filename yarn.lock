@@ -343,10 +343,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/webxr@npm:^0.4.0":
-  version: 0.4.0
-  resolution: "@types/webxr@npm:0.4.0"
-  checksum: 4388c18a5b08ef4aa97f2177d3d80d384c5557c4b06278215d46472585923128fb316353e5fb799d22ffe99be149af90d0c27c41cb3681e82228088e48b24184
+"@types/webxr@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "@types/webxr@npm:0.5.1"
+  checksum: a77c6be72623679341526dbec18971db0824d5697626d56decc8bb5b73491582b64d094c168ae8d00861549122ca066d7dc45d9cbb5c608626be7f48a6cd7c43
   languageName: node
   linkType: hard
 
@@ -3363,7 +3363,7 @@ __metadata:
     "@definitelytyped/dtslint-runner": latest
     "@definitelytyped/header-parser": latest
     "@definitelytyped/utils": latest
-    "@types/webxr": ^0.4.0
+    "@types/webxr": ^0.5.1
     all-contributors-cli: ^6.19.0
     husky: ^7.0.1
     prettier: 2.3.2
