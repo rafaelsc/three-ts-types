@@ -87,11 +87,13 @@ export class BufferAttribute<TArray extends TypedArray = TypedArray> {
     setUsage(usage: Usage): this;
     clone(): BufferAttribute<TArray>;
 
-    copy<TOtherArray extends TypedArray>(
-        source: BufferAttribute<TOtherArray>,
-    ): asserts this is this & { array: TOtherArray };
-    //copy<TOtherArray extends TypedArray>(source: BufferAttribute<TOtherArray>): asserts this is this & { array:TOtherArray };
-    //copy<TOtherArray extends TypedArray>(source: BufferAttribute<TOtherArray>): asserts this is BufferAttribute<TOtherArray>;
+    /**
+     * Copies another BufferAttribute to this BufferAttribute. See @remarks
+     * @remarks TODO Comment about TS limitation here
+     * @param source The Source bufferAttribute that will be copied to this instance
+     */
+    copy<TOtherArray extends TypedArray>(source: BufferAttribute<TOtherArray>): BufferAttribute<TOtherArray>;
+    
     copyAt<TOtherArray extends TypedArray>(
         index1: number,
         attribute: BufferAttribute<TOtherArray>,
