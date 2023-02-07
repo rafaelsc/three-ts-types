@@ -28,7 +28,7 @@ export class BufferGeometry extends EventDispatcher {
      * Unique number of this BufferGeometry instance
      */
     id: number;
-    
+
     readonly uuid: string;
 
     /**
