@@ -1,25 +1,7 @@
 import { Usage } from '../constants';
 import { Matrix3 } from './../math/Matrix3';
 import { Matrix4 } from './../math/Matrix4';
-
-type int = number;
-type uint = number;
-type float = number;
-
-type TypedArray =
-    | Int8Array
-    | Uint8Array
-    | Uint8ClampedArray
-    | Int16Array
-    | Uint16Array
-    | Int32Array
-    | Uint32Array
-    | Float32Array
-    | Float64Array;
-
-type IntTypedArray = Int8Array | Uint8Array | Uint8ClampedArray | Int16Array | Uint16Array | Int32Array;
-
-type UIntTypedArray = Uint8Array | Uint8ClampedArray | Uint16Array;
+import { TypedArray } from './types';
 
 /**
  * see {@link https://github.com/mrdoob/three.js/blob/master/src/core/BufferAttribute.js|src/core/BufferAttribute.js}
@@ -93,7 +75,7 @@ export class BufferAttribute<TArray extends TypedArray = TypedArray> {
      * @param source The Source bufferAttribute that will be copied to this instance
      */
     copy<TOtherArray extends TypedArray>(source: BufferAttribute<TOtherArray>): BufferAttribute<TOtherArray>;
-    
+
     copyAt<TOtherArray extends TypedArray>(
         index1: number,
         attribute: BufferAttribute<TOtherArray>,

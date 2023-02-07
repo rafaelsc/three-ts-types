@@ -1,4 +1,4 @@
-import { BufferAttribute, TypedArray, UIntTypedArray, integer } from './BufferAttribute';
+import { BufferAttribute } from './BufferAttribute';
 import { InterleavedBufferAttribute } from './InterleavedBufferAttribute';
 import { GLBufferAttribute } from './GLBufferAttribute';
 import { Box3 } from './../math/Box3';
@@ -9,6 +9,7 @@ import { Vector2 } from './../math/Vector2';
 import { Vector3 } from './../math/Vector3';
 import { EventDispatcher } from './EventDispatcher';
 import { BuiltinShaderAttributeName } from '../constants';
+import { UIntTypedArray, TypedArray } from './types';
 
 /**
  * This is a super efficient class for geometries because it saves all data in buffers.
@@ -27,7 +28,8 @@ export class BufferGeometry extends EventDispatcher {
      * Unique number of this BufferGeometry instance
      */
     id: number;
-    uuid: string;
+    
+    readonly uuid: string;
 
     /**
      * @default ''
@@ -90,7 +92,7 @@ export class BufferGeometry extends EventDispatcher {
     readonly isBufferGeometry: true;
 
     getIndex(): BufferAttribute<UIntTypedArray> | null;
-    setIndex(index: BufferAttribute<UIntTypedArray> | Array<integer> | null): this;
+    setIndex(index: BufferAttribute<UIntTypedArray> | Array<number> | null): this;
 
     setAttribute(
         name: BuiltinShaderAttributeName | (string & {}),

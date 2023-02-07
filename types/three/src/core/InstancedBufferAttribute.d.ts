@@ -1,5 +1,6 @@
 import { BufferGeometry } from './BufferGeometry';
-import { BufferAttribute, TypedArray } from './BufferAttribute';
+import { BufferAttribute } from './BufferAttribute';
+import { TypedArray } from './types';
 
 /**
  * see {@link https://github.com/mrdoob/three.js/blob/master/examples/jsm/utils/BufferGeometryUtils.js|examples/jsm/utils/BufferGeometryUtils.js}

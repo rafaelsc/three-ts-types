@@ -71,7 +71,7 @@ function init() {
     const a = attrib.copy(t1);
     const xc = attrib.array;
 
-    geometry.setIndex(attrib);
+    geometry.setIndex(a);
     geometry.getAttribute('instanceMatrix').array;
 
     // material
