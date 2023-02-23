@@ -1,7 +1,3 @@
-// type int = number;
-// type uint = number;
-// type float = number;
-
 import { BufferAttribute, GLBufferAttribute, InstancedBufferAttribute, InterleavedBufferAttribute } from 'three';
 
 export type TypedArray =
@@ -23,5 +19,4 @@ export type AttributeLike =
     | BufferAttribute<TypedArray>
     | InstancedBufferAttribute<TypedArray>
     | InterleavedBufferAttribute
-    | InstancedInterleavedBufferAttribute
     | GLBufferAttribute;

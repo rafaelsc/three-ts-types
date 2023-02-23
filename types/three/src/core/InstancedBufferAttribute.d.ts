@@ -9,7 +9,7 @@ export namespace BufferGeometryUtils {
     function mergeBufferGeometries(geometries: BufferGeometry[]): BufferGeometry;
     function computeTangents(geometry: BufferGeometry): null;
     function mergeBufferAttributes<TArray extends TypedArray>(
-        attributes: BufferAttribute<TArray>[],
+        attributes: Array<BufferAttribute<TArray>>,
     ): BufferAttribute<TArray> | null;
 }
 

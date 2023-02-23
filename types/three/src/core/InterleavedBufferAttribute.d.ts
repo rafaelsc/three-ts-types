@@ -1,4 +1,5 @@
-import { BufferAttribute, TypedArray } from './BufferAttribute';
+import { BufferAttribute } from './BufferAttribute';
+import { TypedArray } from './types';
 import { InterleavedBuffer } from './InterleavedBuffer';
 import { Matrix4 } from './../math/Matrix4';
 import { Matrix } from './../math/Matrix3';

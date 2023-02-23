@@ -175,7 +175,7 @@ export class BufferGeometry extends EventDispatcher {
      * Set the {@link THREE.BufferGeometry.index | .index} buffer.
      * @param index
      */
-    setIndex(index: BufferAttribute<UIntTypedArray> | Array<number> | null): this;
+    setIndex(index: BufferAttribute<UIntTypedArray> | number[] | null): this;
 
     /**
      * Sets an {@link attributes | attribute} to this geometry with the specified name.

@@ -1,6 +1,6 @@
 import { InterleavedBufferAttribute } from './InterleavedBufferAttribute';
 import { Usage } from '../constants';
-import { TypedArray } from './BufferAttribute';
+import { TypedArray } from './types';
 
 /**
  * see {@link https://github.com/mrdoob/three.js/blob/master/src/core/InterleavedBuffer.js|src/core/InterleavedBuffer.js}

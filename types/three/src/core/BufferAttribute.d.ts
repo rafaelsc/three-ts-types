@@ -168,7 +168,7 @@ export class BufferAttribute<TArray extends TypedArray = TypedArray> {
      * Copy the array given here (which can be a normal array or `TypedArray`) into {@link BufferAttribute.array | array}.
      * @See {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray/set | TypedArray.set} for notes on requirements if copying a `TypedArray`.
      */
-    copyArray(array: TypedArray | Array<number>): this;
+    copyArray(array: TypedArray | number[]): this;
 
     /**
      * Applies matrix {@link Matrix3 | m} to every Vector3 element of this {@link BufferAttribute}.
@@ -303,8 +303,7 @@ export class BufferAttribute<TArray extends TypedArray = TypedArray> {
 export class Int8BufferAttribute extends BufferAttribute<Int8Array> {
     /**
      * This creates a new {@link THREE.Int8BufferAttribute | Int8BufferAttribute} object.
-     * @param array This can be a typed or untyped (normal) array or an integer length. An array value will be converted to `Int8Array`.
-     * If a length is given a new `TypedArray` will created, initialized with all elements set to zero.
+     * @param length Len
      * @param itemSize the number of values of the {@link array} that should be associated with a particular vertex.
      * For instance, if this attribute is storing a 3-component vector (such as a _position_, _normal_, or _color_),
      * then itemSize should be `3`.
@@ -318,12 +317,15 @@ export class Int8BufferAttribute extends BufferAttribute<Int8Array> {
      * Default `false`.
      */
     constructor(length: number, itemSize: number, normalized?: boolean);
+    /**
+     * @param elements Iterabke
+     */
     constructor(elements: Iterable<number>, itemSize: number, normalized?: boolean);
-    constructor(
-        array: Iterable<number> | ArrayLike<number> | TypedArray | ArrayBufferLike,
-        itemSize: number,
-        normalized?: boolean,
-    );
+    /**
+     * @param array This can be a typed or untyped (normal) array or an integer length. An array value will be converted to `Int8Array`.
+     * If a length is given a new `TypedArray` will created, initialized with all elements set to zero.
+     */
+    constructor(array: ArrayLike<number> | TypedArray | ArrayBufferLike, itemSize: number, normalized?: boolean);
 }
 
 /**
@@ -353,11 +355,7 @@ export class Uint8BufferAttribute extends BufferAttribute<Uint8Array> {
      */
     constructor(length: number, itemSize: number, normalized?: boolean);
     constructor(elements: Iterable<number>, itemSize: number, normalized?: boolean);
-    constructor(
-        array: Iterable<number> | ArrayLike<number> | TypedArray | ArrayBufferLike,
-        itemSize: number,
-        normalized?: boolean,
-    );
+    constructor(array: ArrayLike<number> | ArrayBuffer | number, itemSize: number, normalized?: boolean);
 }
 
 /**
@@ -387,11 +385,7 @@ export class Uint8ClampedBufferAttribute extends BufferAttribute<Uint8ClampedArr
      */
     constructor(length: number, itemSize: number, normalized?: boolean);
     constructor(elements: Iterable<number>, itemSize: number, normalized?: boolean);
-    constructor(
-        array: Iterable<number> | ArrayLike<number> | TypedArray | ArrayBufferLike,
-        itemSize: number,
-        normalized?: boolean,
-    );
+    constructor(array: ArrayLike<number> | ArrayBuffer | number, itemSize: number, normalized?: boolean);
 }
 
 /**
@@ -421,11 +415,7 @@ export class Int16BufferAttribute extends BufferAttribute<Int16Array> {
      */
     constructor(length: number, itemSize: number, normalized?: boolean);
     constructor(elements: Iterable<number>, itemSize: number, normalized?: boolean);
-    constructor(
-        array: Iterable<number> | ArrayLike<number> | TypedArray | ArrayBufferLike,
-        itemSize: number,
-        normalized?: boolean,
-    );
+    constructor(array: ArrayLike<number> | ArrayBuffer | number, itemSize: number, normalized?: boolean);
 }
 
 /**
@@ -455,11 +445,7 @@ export class Uint16BufferAttribute extends BufferAttribute<Uint16Array> {
      */
     constructor(length: number, itemSize: number, normalized?: boolean);
     constructor(elements: Iterable<number>, itemSize: number, normalized?: boolean);
-    constructor(
-        array: Iterable<number> | ArrayLike<number> | TypedArray | ArrayBufferLike,
-        itemSize: number,
-        normalized?: boolean,
-    );
+    constructor(array: ArrayLike<number> | ArrayBuffer | number, itemSize: number, normalized?: boolean);
 }
 
 /**
@@ -489,11 +475,7 @@ export class Int32BufferAttribute extends BufferAttribute<Int32Array> {
      */
     constructor(length: number, itemSize: number, normalized?: boolean);
     constructor(elements: Iterable<number>, itemSize: number, normalized?: boolean);
-    constructor(
-        array: Iterable<number> | ArrayLike<number> | TypedArray | ArrayBufferLike,
-        itemSize: number,
-        normalized?: boolean,
-    );
+    constructor(array: ArrayLike<number> | ArrayBuffer | number, itemSize: number, normalized?: boolean);
 }
 
 /**
@@ -523,11 +505,7 @@ export class Uint32BufferAttribute extends BufferAttribute<Uint32Array> {
      */
     constructor(length: number, itemSize: number, normalized?: boolean);
     constructor(elements: Iterable<number>, itemSize: number, normalized?: boolean);
-    constructor(
-        array: Iterable<number> | ArrayLike<number> | TypedArray | ArrayBufferLike,
-        itemSize: number,
-        normalized?: boolean,
-    );
+    constructor(array: ArrayLike<number> | ArrayBuffer | number, itemSize: number, normalized?: boolean);
 }
 
 /**
@@ -557,11 +535,7 @@ export class Float16BufferAttribute extends BufferAttribute<Uint16Array> {
      */
     constructor(length: number, itemSize: number, normalized?: boolean);
     constructor(elements: Iterable<number>, itemSize: number, normalized?: boolean);
-    constructor(
-        array: Iterable<number> | ArrayLike<number> | TypedArray | ArrayBufferLike,
-        itemSize: number,
-        normalized?: boolean,
-    );
+    constructor(array: ArrayLike<number> | ArrayBuffer | number, itemSize: number, normalized?: boolean);
 }
 
 /**
@@ -591,11 +565,7 @@ export class Float32BufferAttribute extends BufferAttribute<Float32Array> {
      */
     constructor(length: number, itemSize: number, normalized?: boolean);
     constructor(elements: Iterable<number>, itemSize: number, normalized?: boolean);
-    constructor(
-        array: Iterable<number> | ArrayLike<number> | TypedArray | ArrayBufferLike,
-        itemSize: number,
-        normalized?: boolean,
-    );
+    constructor(array: ArrayLike<number> | ArrayBuffer | number, itemSize: number, normalized?: boolean);
 }
 
 /**
@@ -625,9 +595,5 @@ export class Float64BufferAttribute extends BufferAttribute<Float64Array> {
      */
     constructor(length: number, itemSize: number, normalized?: boolean);
     constructor(elements: Iterable<number>, itemSize: number, normalized?: boolean);
-    constructor(
-        array: Iterable<number> | ArrayLike<number> | TypedArray | ArrayBufferLike,
-        itemSize: number,
-        normalized?: boolean,
-    );
+    constructor(array: ArrayLike<number> | ArrayBuffer | number, itemSize: number, normalized?: boolean);
 }
