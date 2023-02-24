@@ -1,11 +1,8 @@
-export interface BaseEvent {
-    type: string;
-}
-
 /**
  * Event object.
  */
-export interface Event extends BaseEvent {
+export interface Event {
+    type: string;
     target?: any;
     [attachment: string]: any;
 }
@@ -32,7 +29,7 @@ export type EventListener<E, T, U> = (event: E & { type: T } & { target: U }) =>
  * @see {@link https://threejs.org/docs/index.html#api/en/core/EventDispatcher | Official Documentation}
  * @see {@link https://github.com/mrdoob/three.js/blob/master/src/core/EventDispatcher.js | Source}
  */
-export class EventDispatcher<E extends BaseEvent = Event> {
+export class EventDispatcher<E extends Event = Event> {
     /**
      * Creates {@link THREE.EventDispatcher | EventDispatcher} object.
      * @remarks
