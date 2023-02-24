@@ -14,6 +14,11 @@ import { EventDispatcher, Event } from './EventDispatcher';
 import { BufferGeometry } from './BufferGeometry';
 import { AnimationClip } from '../animation/AnimationClip';
 
+export interface Object3DEventMap {
+    'added': Event;
+    'removed': Event;
+}
+
 /**
  * This is the base class for most objects in three.js and provides a set of properties and methods for manipulating objects in 3D space.
  * @remarks Note that this can be used for grouping objects via the {@link THREE.Object3D.add | .add()} method which adds the object as a child,
@@ -21,7 +26,7 @@ import { AnimationClip } from '../animation/AnimationClip';
  * @see {@link https://threejs.org/docs/index.html#api/en/core/Object3D | Official Documentation}
  * @see {@link https://github.com/mrdoob/three.js/blob/master/src/core/Object3D.js | Source}
  */
-export class Object3D<E extends Event = Event> extends EventDispatcher<E> {
+export class Object3D<EventMap extends Object3DEventMap = Object3DEventMap> extends EventDispatcher<EventMap> {
     /**
      * This creates a new {@link Object3D} object.
      */

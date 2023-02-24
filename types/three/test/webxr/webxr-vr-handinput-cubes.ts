@@ -153,7 +153,7 @@ function onWindowResize() {
 }
 
 const SphereRadius = 0.05;
-function onPinchStartLeft(event: THREE.Event) {
+function onPinchStartLeft(event: THREE.Event<string, Hand>) {
     const controller = event.target;
 
     if (grabbing) {
@@ -215,7 +215,7 @@ function onPinchStartRight(event: THREE.Event) {
     }
 }
 
-function onPinchEndRight(event: THREE.Event) {
+function onPinchEndRight(event: THREE.Event<string, Hand>) {
     const controller = event.target;
 
     if (controller.userData.selected !== undefined) {

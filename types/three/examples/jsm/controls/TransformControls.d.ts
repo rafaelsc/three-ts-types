@@ -1,6 +1,18 @@
-import { Object3D, Camera, MOUSE, Raycaster, Mesh, Vector3, Quaternion } from '../../../src/Three';
+import { Object3D, Camera, MOUSE, Raycaster, Mesh, Vector3, Quaternion, Object3DEventMap } from '../../../src/Three';
 
-export class TransformControls extends Object3D {
+export interface TransformControlsPropChangeEvent extends Event {
+    value: any;
+}
+
+export type TransformControlsEventMap = Object3DEventMap & {
+    'change': Event;
+    'mouseDown': Event;
+    'mouseUp': Event;
+    'objectChange': Event;
+    'dragging-changed': TransformControlsPropChangeEvent;
+};
+
+export class TransformControls extends Object3D<TransformControlsEventMap> {
     constructor(object: Camera, domElement?: HTMLElement);
 
     domElement: HTMLElement;

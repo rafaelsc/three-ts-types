@@ -1,12 +1,18 @@
 /**
  * Event object.
  */
-export interface Event {
-    type: string;
-    target?: any;
-    [attachment: string]: any;
+export interface Event<TType extends string = string, TSource = unknown> {
+    type: TType;
+    target: TSource;
 }
-export type EventListener<E, T, U> = (event: E & { type: T } & { target: U }) => void;
+
+export type EventMap<K extends string, T> = {
+    [P in K]: T;
+};
+
+// export type FiredEvent<TType extends string, TEvent extends Event<TType>, TSource> = TEvent & {
+//     target: TSource;
+// };
 
 /**
  * JavaScript events for custom objects
@@ -29,7 +35,7 @@ export type EventListener<E, T, U> = (event: E & { type: T } & { target: U }) =>
  * @see {@link https://threejs.org/docs/index.html#api/en/core/EventDispatcher | Official Documentation}
  * @see {@link https://github.com/mrdoob/three.js/blob/master/src/core/EventDispatcher.js | Source}
  */
-export class EventDispatcher<E extends Event = Event> {
+export class EventDispatcher<TEventMap extends EventMap<string, Event> = {}> {
     /**
      * Creates {@link THREE.EventDispatcher | EventDispatcher} object.
      * @remarks
@@ -43,25 +49,29 @@ export class EventDispatcher<E extends Event = Event> {
      * @param type The type of event to listen to.
      * @param listener The function that gets called when the event is fired.
      */
-    addEventListener<T extends E['type']>(type: T, listener: EventListener<E, T, this>): void;
+    addEventListener<E extends keyof TEventMap>(type: E, listener: (ev: TEventMap[E]) => void): void;
+    addEventListener<E extends string>(type: E, listener: (ev: Event<E, this>) => void): void;
 
     /**
      * Checks if listener is added to an event type.
      * @param type The type of event to listen to.
      * @param listener The function that gets called when the event is fired.
      */
-    hasEventListener<T extends E['type']>(type: T, listener: EventListener<E, T, this>): boolean;
+    hasEventListener<E extends keyof TEventMap>(type: E, listener: (ev: TEventMap[E]) => void): boolean;
+    hasEventListener<E extends string>(type: string, listener: (ev: Event<E, this>) => void): boolean;
 
     /**
      * Removes a listener from an event type.
      * @param type The type of the listener that gets removed.
      * @param listener The listener function that gets removed.
      */
-    removeEventListener<T extends E['type']>(type: T, listener: EventListener<E, T, this>): void;
+    removeEventListener<E extends keyof TEventMap>(type: E, listener: (ev: TEventMap[E]) => void): void;
+    removeEventListener<E extends string>(type: string, listener: (ev: Event<E, this>) => void): void;
 
     /**
      * Fire an event type.
      * @param event The event that gets fired.
      */
-    dispatchEvent(event: E): void;
+    dispatchEvent<E extends keyof TEventMap>(event: Omit<TEventMap[E], 'target'>): void;
+    dispatchEvent<E extends Event>(event: Omit<E, 'target'>): void;
 }

@@ -9,7 +9,7 @@ eveDisForAnyEvent.addEventListener('eventA', e => {
 });
 eveDisForAnyEvent.dispatchEvent({ type: 'eventA' });
 eveDisForAnyEvent.removeEventListener('eventA', e => {
-    e.type; // $ExpectType "eventA"
+    e.type; // $ExpectType "eventAA"
     e.target; // $ExpectType any
 });
 eveDisForAnyEvent.hasEventListener('eventA', e => {
