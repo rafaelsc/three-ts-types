@@ -1,7 +1,7 @@
 import { EventMap } from './core/EventDispatcher';
 
 export type DisposableEventMap = {
-    'dispose': Event;
+    dispose: Event;
 };
 
 export interface Disposable {

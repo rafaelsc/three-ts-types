@@ -5,10 +5,10 @@ export interface TransformControlsPropChangeEvent extends Event {
 }
 
 export type TransformControlsEventMap = Object3DEventMap & {
-    'change': Event;
-    'mouseDown': Event;
-    'mouseUp': Event;
-    'objectChange': Event;
+    change: Event;
+    mouseDown: Event;
+    mouseUp: Event;
+    objectChange: Event;
     'dragging-changed': TransformControlsPropChangeEvent;
 };
 
