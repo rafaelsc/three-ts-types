@@ -18,8 +18,13 @@ eveDisForAnyEvent.hasEventListener('eventA', e => {
 });
 
 // Test for typed events
-type TestEvent = { type: 'foo'; foo: number } | { type: 'bar'; bar: string };
-const eveDisForTestEvent = new THREE.EventDispatcher<TestEvent>();
+//type TestEvent = { type: 'foo'; foo: number } | { type: 'bar'; bar: string };
+type TestEventMap = {
+    'foo': { type: 'foo'; foo: number };
+    'bar': { type: 'bar'; bar: string };
+};
+
+const eveDisForTestEvent = new THREE.EventDispatcher<TestEventMap>();
 eveDisForTestEvent.addEventListener('foo', e => {
     e.type; // $ExpectType "foo"
     e.target; // $ExpectType EventDispatcher<TestEvent>
