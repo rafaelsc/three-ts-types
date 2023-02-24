@@ -20,8 +20,8 @@ eveDisForAnyEvent.hasEventListener('eventA', e => {
 // Test for typed events
 //type TestEvent = { type: 'foo'; foo: number } | { type: 'bar'; bar: string };
 type TestEventMap = {
-    'foo': { type: 'foo'; foo: number };
-    'bar': { type: 'bar'; bar: string };
+    foo: { type: 'foo'; foo: number };
+    bar: { type: 'bar'; bar: string };
 };
 
 const eveDisForTestEvent = new THREE.EventDispatcher<TestEventMap>();
