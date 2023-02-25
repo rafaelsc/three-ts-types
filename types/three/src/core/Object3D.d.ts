@@ -10,13 +10,13 @@ import { Camera } from './../cameras/Camera';
 import { Material } from './../materials/Material';
 import { Group } from './../objects/Group';
 import { Intersection, Raycaster } from './Raycaster';
-import { EventDispatcher, Event } from './EventDispatcher';
+import { EventDispatcher, Event, EventMap } from './EventDispatcher';
 import { BufferGeometry } from './BufferGeometry';
 import { AnimationClip } from '../animation/AnimationClip';
 
-export interface Object3DEventMap {
-    added: Event;
-    removed: Event;
+export interface Object3DEventMap extends EventMap {
+    "added": Event;
+    "removed": Event;
 }
 
 /**
@@ -26,7 +26,7 @@ export interface Object3DEventMap {
  * @see {@link https://threejs.org/docs/index.html#api/en/core/Object3D | Official Documentation}
  * @see {@link https://github.com/mrdoob/three.js/blob/master/src/core/Object3D.js | Source}
  */
-export class Object3D<EventMap extends Object3DEventMap = Object3DEventMap> extends EventDispatcher<EventMap> {
+export class Object3D<TEventMap extends Object3DEventMap = Object3DEventMap> extends EventDispatcher<TEventMap> {
     /**
      * This creates a new {@link Object3D} object.
      */

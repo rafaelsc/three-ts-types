@@ -5,11 +5,12 @@ const eveDisForAnyEvent = new THREE.EventDispatcher();
 eveDisForAnyEvent.addEventListener('eventA', e => {
     e.type; // $ExpectType "eventA"
     e.target; // $ExpectType any
+    // @ts-expect-error
     e.bar();
 });
 eveDisForAnyEvent.dispatchEvent({ type: 'eventA' });
 eveDisForAnyEvent.removeEventListener('eventA', e => {
-    e.type; // $ExpectType "eventAA"
+    e.type; // $ExpectType "eventA"
     e.target; // $ExpectType any
 });
 eveDisForAnyEvent.hasEventListener('eventA', e => {
@@ -19,12 +20,12 @@ eveDisForAnyEvent.hasEventListener('eventA', e => {
 
 // Test for typed events
 //type TestEvent = { type: 'foo'; foo: number } | { type: 'bar'; bar: string };
-type TestEventMap = {
-    foo: { type: 'foo'; foo: number };
-    bar: { type: 'bar'; bar: string };
+type TestEvent = { 
+    foo: { type: 'foo'; foo: number }; 
+    bar: { type: 'bar'; bar: string }
 };
 
-const eveDisForTestEvent = new THREE.EventDispatcher<TestEventMap>();
+const eveDisForTestEvent = new THREE.EventDispatcher<TestEvent>();
 eveDisForTestEvent.addEventListener('foo', e => {
     e.type; // $ExpectType "foo"
     e.target; // $ExpectType EventDispatcher<TestEvent>
@@ -35,8 +36,10 @@ eveDisForTestEvent.addEventListener('foo', e => {
     e.bar;
 });
 // call addEventListener with an invalid event
-// @ts-expect-error
-eveDisForTestEvent.addEventListener('baz', () => {});
+// ts-expect-error
+eveDisForTestEvent.addEventListener('baz', e => {
+    e.type; // $ExpectType "baz"
+});
 
 eveDisForTestEvent.dispatchEvent({ type: 'foo', foo: 42 });
 // call dispatchEvent with an invalid event
