@@ -10,7 +10,7 @@ export interface Event<TType extends string = string> {
 // };
 
 export interface EventMap {
-    [index: string]: Event
+    [index: string]: Event;
 }
 
 export type FiredEvent<TEvent extends Event, TSource> = TEvent & {
@@ -60,7 +60,10 @@ export class EventDispatcher<TEventMap extends EventMap = {}> {
      * @param type The type of event to listen to.
      * @param listener The function that gets called when the event is fired.
      */
-    hasEventListener<E extends keyof TEventMap>(type: E, listener: (ev: FiredEvent<TEventMap[E], this>) => void): boolean;
+    hasEventListener<E extends keyof TEventMap>(
+        type: E,
+        listener: (ev: FiredEvent<TEventMap[E], this>) => void,
+    ): boolean;
     hasEventListener(type: string, listener: (ev: FiredEvent<Event, this>) => void): boolean;
 
     /**
@@ -68,7 +71,10 @@ export class EventDispatcher<TEventMap extends EventMap = {}> {
      * @param type The type of the listener that gets removed.
      * @param listener The listener function that gets removed.
      */
-    removeEventListener<E extends keyof TEventMap>(type: E, listener: (ev: FiredEvent<TEventMap[E], this>) => void): void;
+    removeEventListener<E extends keyof TEventMap>(
+        type: E,
+        listener: (ev: FiredEvent<TEventMap[E], this>) => void,
+    ): void;
     removeEventListener(type: string, listener: (ev: FiredEvent<Event, this>) => void): void;
 
     /**
