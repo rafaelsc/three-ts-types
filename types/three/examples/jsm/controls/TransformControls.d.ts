@@ -1,4 +1,14 @@
-import { Object3D, Camera, MOUSE, Raycaster, Mesh, Vector3, Quaternion, Object3DEventMap } from '../../../src/Three';
+import {
+    Object3D,
+    Camera,
+    MOUSE,
+    Raycaster,
+    Mesh,
+    Vector3,
+    Quaternion,
+    Object3DEventMap,
+    MouseButton,
+} from '../../../src/Three';
 
 export interface TransformControlsPropChangeEvent extends Event {
     value: any;
@@ -34,9 +44,9 @@ export class TransformControls extends Object3D<TransformControlsEventMap> {
     showZ: boolean;
     readonly isTransformControls: true;
     mouseButtons: {
-        LEFT: MOUSE;
-        MIDDLE: MOUSE;
-        RIGHT: MOUSE;
+        LEFT: MouseButton;
+        MIDDLE: MouseButton;
+        RIGHT: MouseButton;
     };
 
     attach(object: Object3D): this;

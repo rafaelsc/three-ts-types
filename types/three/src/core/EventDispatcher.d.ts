@@ -41,9 +41,6 @@ export type FiredEvent<TEvent extends Event, TSource> = TEvent & {
 export class EventDispatcher<TEventMap extends EventMap = {}> {
     /**
      * Creates {@link THREE.EventDispatcher | EventDispatcher} object.
-     * @remarks
-     * It needs to be call with {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call | Function.prototype.call()}
-     * to add the functionality to an object.
      */
     constructor();
 
