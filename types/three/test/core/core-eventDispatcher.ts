@@ -4,22 +4,21 @@ import * as THREE from 'three';
 const eveDisForAnyEvent = new THREE.EventDispatcher();
 eveDisForAnyEvent.addEventListener('eventA', e => {
     e.type; // $ExpectType "eventA"
-    e.target; // $ExpectType any
+    e.target; // $ExpectType EventDispatcher<{}>
     // @ts-expect-error
     e.bar();
 });
 eveDisForAnyEvent.dispatchEvent({ type: 'eventA' });
 eveDisForAnyEvent.removeEventListener('eventA', e => {
     e.type; // $ExpectType "eventA"
-    e.target; // $ExpectType any
+    e.target; // $ExpectType EventDispatcher<{}>
 });
 eveDisForAnyEvent.hasEventListener('eventA', e => {
     e.type; // $ExpectType "eventA"
-    e.target; // $ExpectType any
+    e.target; // $ExpectType EventDispatcher<{}>
 });
 
 // Test for typed events
-//type TestEvent = { type: 'foo'; foo: number } | { type: 'bar'; bar: string };
 type TestEvent = {
     foo: { type: 'foo'; foo: number };
     bar: { type: 'bar'; bar: string };
