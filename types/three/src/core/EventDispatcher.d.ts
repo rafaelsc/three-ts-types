@@ -1,4 +1,4 @@
-export type EventData = Record<string|number|symbol, unknown>;
+export type EventData = Record<string | number | symbol, unknown>;
 
 /**
  * Event object.
@@ -49,7 +49,10 @@ export class EventDispatcher<TEventMap extends EventMap = {}> {
      * @param type The type of event to listen to.
      * @param listener The function that gets called when the event is fired.
      */
-    addEventListener<E extends keyof TEventMap & string>(type: E, listener: (ev: FiredEvent<E, TEventMap[E], this>) => void): void;
+    addEventListener<E extends keyof TEventMap & string>(
+        type: E,
+        listener: (ev: FiredEvent<E, TEventMap[E], this>) => void,
+    ): void;
     addEventListener<E extends string>(type: E, listener: (ev: FiredEvent<E, Event, this>) => void): void;
 
     /**
@@ -57,7 +60,10 @@ export class EventDispatcher<TEventMap extends EventMap = {}> {
      * @param type The type of event to listen to.
      * @param listener The function that gets called when the event is fired.
      */
-    hasEventListener<E extends keyof TEventMap & string>(type: E, listener: (ev: FiredEvent<E, TEventMap[E], this>) => void): boolean;
+    hasEventListener<E extends keyof TEventMap & string>(
+        type: E,
+        listener: (ev: FiredEvent<E, TEventMap[E], this>) => void,
+    ): boolean;
     hasEventListener<E extends string>(type: E, listener: (ev: FiredEvent<E, Event, this>) => void): boolean;
 
     /**
@@ -65,13 +71,16 @@ export class EventDispatcher<TEventMap extends EventMap = {}> {
      * @param type The type of the listener that gets removed.
      * @param listener The listener function that gets removed.
      */
-    removeEventListener<E extends keyof TEventMap & string>(type: E, listener: (ev: FiredEvent<E, TEventMap[E], this>) => void): void;
+    removeEventListener<E extends keyof TEventMap & string>(
+        type: E,
+        listener: (ev: FiredEvent<E, TEventMap[E], this>) => void,
+    ): void;
     removeEventListener<E extends string>(type: E, listener: (ev: FiredEvent<E, Event, this>) => void): void;
 
     /**
      * Fire an event type.
      * @param event The event that gets fired.
      */
-    dispatchEvent<E extends keyof TEventMap>(event: {readonly type: E} & TEventMap[E]): void;
-    dispatchEvent(event: Event): void;
+    dispatchEvent<E extends keyof TEventMap>(event: { readonly type: E } & TEventMap[E]): void;
+    dispatchEvent<E extends Event>(event: E): void;
 }

@@ -2,7 +2,7 @@ import { EventMap } from './core/EventDispatcher';
 
 // tslint:disable-next-line:interface-over-type-literal
 export interface DisposableEventMap extends EventMap {
-    "dispose": {};
+    dispose: {};
 }
 
 export interface Disposable {

@@ -15,8 +15,8 @@ import { BufferGeometry } from './BufferGeometry';
 import { AnimationClip } from '../animation/AnimationClip';
 
 export interface Object3DEventMap extends EventMap {
-    "added": {};
-    "removed": {};
+    added: {};
+    removed: {};
 }
 
 /**
