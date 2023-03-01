@@ -11,6 +11,7 @@ import { EventDispatcher } from './EventDispatcher';
 import { BuiltinShaderAttributeName } from '../constants';
 import * as BufferGeometryUtils from '../../examples/jsm/utils/BufferGeometryUtils';
 import { Disposable, DisposableEventMap } from '../types';
+
 /**
  * A representation of mesh, line, or point geometry
  * Includes vertex positions, face indices, normals, colors, UVs, and custom attributes within buffers, reducing the cost of passing all this data to the GPU.

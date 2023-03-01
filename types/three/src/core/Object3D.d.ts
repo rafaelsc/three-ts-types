@@ -10,13 +10,13 @@ import { Camera } from './../cameras/Camera';
 import { Material } from './../materials/Material';
 import { Group } from './../objects/Group';
 import { Intersection, Raycaster } from './Raycaster';
-import { EventDispatcher, Event, EventMap } from './EventDispatcher';
+import { EventDispatcher, EventMap } from './EventDispatcher';
 import { BufferGeometry } from './BufferGeometry';
 import { AnimationClip } from '../animation/AnimationClip';
 
 export interface Object3DEventMap extends EventMap {
-    added: Event;
-    removed: Event;
+    "added": {};
+    "removed": {};
 }
 
 /**

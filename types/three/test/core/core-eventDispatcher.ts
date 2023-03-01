@@ -19,10 +19,10 @@ eveDisForAnyEvent.hasEventListener('eventA', e => {
 });
 
 // Test for typed events
-type TestEvent = {
-    foo: { type: 'foo'; foo: number };
-    bar: { type: 'bar'; bar: string };
-};
+interface TestEvent extends THREE.EventMap {
+    foo: { foo: number };
+    bar: { bar: string };
+}
 
 const eveDisForTestEvent = new THREE.EventDispatcher<TestEvent>();
 eveDisForTestEvent.addEventListener('foo', e => {
@@ -41,11 +41,17 @@ eveDisForTestEvent.addEventListener('baz', e => {
 });
 
 eveDisForTestEvent.dispatchEvent({ type: 'foo', foo: 42 });
+eveDisForTestEvent.dispatchEvent({ type: 'bar', bar: '42' });
+eveDisForTestEvent.dispatchEvent({ type: 'zzzz', shouldWork: '42' }); // Should fire a non strongType event / unknown event.
+
 // call dispatchEvent with an invalid event
 // @ts-expect-error
 eveDisForTestEvent.dispatchEvent({ type: 'foo', foo: '42' });
 // @ts-expect-error
 eveDisForTestEvent.dispatchEvent({ type: 'foo', bar: '42' });
+
+// @ts-expect-error
+eveDisForTestEvent.dispatchEvent({ type: 'bar', bar: 42 });
 
 eveDisForTestEvent.removeEventListener('bar', () => {});
 eveDisForTestEvent.hasEventListener('bar', () => {});
