@@ -51,7 +51,6 @@ eveDisForTestEvent.addEventListener('NotRegistered', e => {
 });
 
 eveDisForTestEvent.dispatchEvent({ type: 'foo', foo: 42 });
-// eveDisForTestEvent.dispatchEvent<{ type: 'foo', foo: number },TestEvent>({ type: 'foo', foo: 42 });
 eveDisForTestEvent.dispatchEvent({ type: 'bar', bar: '42' });
 eveDisForTestEvent.dispatchEvent({ type: 'zzzz', shouldWork: '42' }); // Should fire a non strongType event / unknown event.
 eveDisForTestEvent.dispatchEvent({ type: 'eventA' }); // Should fire a non strongType event / unknown event.
