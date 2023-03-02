@@ -40,9 +40,15 @@ eveDisForTestEvent.addEventListener('foo', e => {
 // ts-expect-error
 eveDisForTestEvent.addEventListener('baz', e => {
     e.type; // $ExpectType "baz"
+    e.target; // $ExpectType EventDispatcher<TestEvent>
 });
 
-eveDisForTestEvent.addEventListener('foo', e => {});
+eveDisForTestEvent.addEventListener('NotRegistered', e => {
+    e.type; // $ExpectType "NotRegistered"
+    e.target; // $ExpectType EventDispatcher<TestEvent>
+    // @ts-expect-error
+    e.bar();
+});
 
 eveDisForTestEvent.dispatchEvent({ type: 'foo', foo: 42 });
 // eveDisForTestEvent.dispatchEvent<{ type: 'foo', foo: number },TestEvent>({ type: 'foo', foo: 42 });
