@@ -9,7 +9,7 @@ eveDisForAnyEvent.addEventListener('eventA', e => {
     e.bar();
 });
 eveDisForAnyEvent.dispatchEvent({ type: 'eventA' });
-eveDisForAnyEvent.dispatchEvent({ type: 'eventB', otherProp:42 });
+eveDisForAnyEvent.dispatchEvent({ type: 'eventB', otherProp: 42 });
 
 eveDisForAnyEvent.removeEventListener('eventA', e => {
     e.type; // $ExpectType "eventA"
@@ -21,10 +21,10 @@ eveDisForAnyEvent.hasEventListener('eventA', e => {
 });
 
 // Test for typed events
-interface TestEvent extends THREE.EventMap {
+interface TestEvent {
     foo: { foo: number };
     bar: { bar: string };
-}HTMLAllCollection
+}
 
 const eveDisForTestEvent = new THREE.EventDispatcher<TestEvent>();
 eveDisForTestEvent.addEventListener('foo', e => {
@@ -42,7 +42,10 @@ eveDisForTestEvent.addEventListener('baz', e => {
     e.type; // $ExpectType "baz"
 });
 
+eveDisForTestEvent.addEventListener('foo', e => {});
+
 eveDisForTestEvent.dispatchEvent({ type: 'foo', foo: 42 });
+// eveDisForTestEvent.dispatchEvent<{ type: 'foo', foo: number },TestEvent>({ type: 'foo', foo: 42 });
 eveDisForTestEvent.dispatchEvent({ type: 'bar', bar: '42' });
 eveDisForTestEvent.dispatchEvent({ type: 'zzzz', shouldWork: '42' }); // Should fire a non strongType event / unknown event.
 eveDisForTestEvent.dispatchEvent({ type: 'eventA' }); // Should fire a non strongType event / unknown event.
