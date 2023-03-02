@@ -3,7 +3,6 @@
  */
 export interface Event {
     readonly type: string;
-    //[others: string]: unknown;
 }
 
 type EventMap = Record<string, {}>;
@@ -28,20 +27,11 @@ export type EventReceiver<TSource, TEventType extends string, TEventData> = (
 
 type EventTypeValidator<TEvent extends Event, TEventMap extends {}> = TEvent extends { type: infer TEventType }
     ? TEventType extends EventKey<TEventMap>
-        ? { readonly type: TEventType } & TEventMap[TEventType] & { x?: true }
+        ? { readonly type: TEventType } & TEventMap[TEventType]
         : TEventType extends string
-        ? TEvent & { x?: false }
+        ? TEvent
         : never
     : never;
-
-type x1 = EventTypeValidator<{ type: 'eventA' }, {}>;
-type x2 = EventTypeValidator<{ type: 'eventAp'; op: 0 }, {}>;
-
-type x11 = EventTypeValidator<{ type: 'eventA' }, { eventA: {} }>;
-type x12 = EventTypeValidator<{ type: 'eventA'; x: 0 }, { eventB: { y: string } }>;
-
-type x21 = EventTypeValidator<{ type: 'eventA'; op: 'a' }, { eventA: { op: number } }>;
-type x22 = EventTypeValidator<{ type: 'eventA'; op: 0 }, { eventB: {} }>;
 
 /**
  * JavaScript events for custom objects
