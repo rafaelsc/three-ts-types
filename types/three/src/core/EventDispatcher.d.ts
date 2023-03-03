@@ -20,7 +20,7 @@ export type EventMap = Record<string, {}>;
 export type EventKey<T extends EventMap> = string & keyof T;
 
 export type EventReceiver<TSource, TEventType extends string, TEventData> = (
-    event: TEventData & Event<TEventType, TSource>
+    event: TEventData & Event<TEventType, TSource>,
 ) => void;
 
 export type EventTypeValidator<TEvent extends BaseEvent, TEventMap extends {}> = TEvent extends {
