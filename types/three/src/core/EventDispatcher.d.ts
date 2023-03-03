@@ -8,9 +8,9 @@ export interface BaseEvent {
 /**
  * The minimal expected contract of a fired Event that was dispatched by a {@link EventDispatcher<>}.
  */
-export interface Event {
-    readonly type: string;
-    readonly target: unknown;
+export interface Event<TEventType extends string = string, TSource = unknown> {
+    readonly type: TEventType;
+    readonly target: TSource;
 }
 
 // tslint:disable-next-line:interface-over-type-literal - Type Aliases to add better readability.
@@ -20,10 +20,7 @@ export type EventMap = Record<string, {}>;
 export type EventKey<T extends EventMap> = string & keyof T;
 
 export type EventReceiver<TSource, TEventType extends string, TEventData> = (
-    event: TEventData & {
-        readonly type: TEventType;
-        readonly target: TSource;
-    },
+    event: TEventData & Event<TEventType, TSource>
 ) => void;
 
 export type EventTypeValidator<TEvent extends BaseEvent, TEventMap extends {}> = TEvent extends {
