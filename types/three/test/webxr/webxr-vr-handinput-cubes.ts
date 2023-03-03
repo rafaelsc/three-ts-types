@@ -153,8 +153,8 @@ function onWindowResize() {
 }
 
 const SphereRadius = 0.05;
-function onPinchStartLeft(event: THREE.Event) {
-    const controller = event.target as Hand;
+function onPinchStartLeft(event: THREE.Event<Hand>) {
+    const controller = event.target;
 
     if (grabbing) {
         const indexTip = controller.joints['index-finger-tip'];
@@ -203,8 +203,8 @@ function collideObject(indexTip: THREE.Group) {
     return null;
 }
 
-function onPinchStartRight(event: THREE.Event) {
-    const controller = event.target as Hand;
+function onPinchStartRight(event: THREE.Event<Hand>) {
+    const controller = event.target;
     const indexTip = controller.joints['index-finger-tip'];
     const object = collideObject(indexTip);
     if (object) {
@@ -215,8 +215,8 @@ function onPinchStartRight(event: THREE.Event) {
     }
 }
 
-function onPinchEndRight(event: THREE.Event) {
-    const controller = event.target as Hand;
+function onPinchEndRight(event: THREE.Event<Hand>) {
+    const controller = event.target;
 
     if (controller.userData.selected !== undefined) {
         const object = controller.userData.selected;
