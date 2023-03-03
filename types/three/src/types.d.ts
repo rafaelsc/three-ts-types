@@ -1,5 +1,7 @@
+import { EmptyEvent } from "./Three";
+
 export interface DisposableEventMap {
-    dispose: {};
+    dispose: EmptyEvent;
 }
 
 export interface Disposable {
