@@ -1,4 +1,4 @@
-import { EmptyEvent } from "./Three";
+import { EmptyEvent } from './Three';
 
 export interface DisposableEventMap {
     dispose: EmptyEvent;
