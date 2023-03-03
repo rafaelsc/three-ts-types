@@ -16,14 +16,14 @@ export interface Event<TSource = unknown, TEventType extends string = string> {
 // tslint:disable-next-line:interface-over-type-literal - Type Aliases to add better readability.
 export type EmptyEvent = {};
 
-export type EventMap = Record<string, {}>;
-export type EventKey<T extends EventMap> = string & keyof T;
+type EventMap = Record<string, {}>;
+type EventKey<T extends EventMap> = string & keyof T;
 
-export type EventReceiver<TSource, TEventType extends string, TEventData> = (
+type EventReceiver<TSource, TEventType extends string, TEventData> = (
     event: TEventData & Event<TSource, TEventType>,
 ) => void;
 
-export type EventTypeValidator<TEvent extends BaseEvent, TEventMap extends {}> = TEvent extends {
+type EventTypeValidator<TEvent extends BaseEvent, TEventMap extends {}> = TEvent extends {
     type: infer TEventType;
 }
     ? TEventType extends EventKey<TEventMap>
@@ -90,3 +90,5 @@ export class EventDispatcher<TEventMap extends {} = {}> {
      */
     dispatchEvent<E extends BaseEvent, Map extends TEventMap>(event: EventTypeValidator<E, Map>): void;
 }
+
+export {};
