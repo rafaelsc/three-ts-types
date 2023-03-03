@@ -25,8 +25,8 @@ export interface WebXRSpaceEventMap extends Object3DEventMap {
     connected: { data: XRInputSource };
     disconnected: { data: XRInputSource };
 
-    pinchend: { handedness: XRHandedness; target: WebXRController; }; // This Event break the THREE.EventDispatcher contract, replacing the target to the wrong instance.
-    pinchstart: { handedness: XRHandedness; target: WebXRController; }; // This Event break the THREE.EventDispatcher contract, replacing the target to the wrong instance.
+    pinchend: { handedness: XRHandedness; target: WebXRController }; // This Event break the THREE.EventDispatcher contract, replacing the target to the wrong instance.
+    pinchstart: { handedness: XRHandedness; target: WebXRController }; // This Event break the THREE.EventDispatcher contract, replacing the target to the wrong instance.
 
     move: EmptyEvent;
 }
