@@ -1,10 +1,13 @@
 /**
- * The minimal Basic Event object that can be dispatched.
+ * The minimal basic Event that can be dispatched by a {@link EventDispatcher<>}.
  */
 export interface BaseEvent {
     readonly type: string;
 }
 
+/**
+ * The minimal expected contract of a fired Event that was dispatched by a {@link EventDispatcher<>}.
+ */
 export interface Event {
     readonly type: string;
     readonly target: unknown;
