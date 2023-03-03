@@ -13,10 +13,12 @@ export interface InstancedMeshEventMap extends Object3DEventMap {
 }
 
 export class InstancedMesh<
-    TGeometry extends BufferGeometry = BufferGeometry,
-    TMaterial extends Material | Material[] = Material | Material[],
-    TEventMap extends InstancedMeshEventMap = InstancedMeshEventMap
-> extends Mesh<TGeometry, TMaterial, TEventMap> implements Disposable {
+        TGeometry extends BufferGeometry = BufferGeometry,
+        TMaterial extends Material | Material[] = Material | Material[],
+        TEventMap extends InstancedMeshEventMap = InstancedMeshEventMap,
+    >
+    extends Mesh<TGeometry, TMaterial, TEventMap>
+    implements Disposable {
     constructor(geometry: TGeometry | undefined, material: TMaterial | undefined, count: number);
 
     count: number;

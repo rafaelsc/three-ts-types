@@ -6,8 +6,8 @@ import { Object3D } from '../core/Object3D';
 import { AnimationObjectGroup } from './AnimationObjectGroup';
 
 export interface AnimationMixerEventMap {
-    loop: { action: AnimationAction, loopDelta: number };
-    finished: { action: AnimationAction, direction: number };
+    loop: { action: AnimationAction; loopDelta: number };
+    finished: { action: AnimationAction; direction: number };
 }
 
 export class AnimationMixer extends EventDispatcher<AnimationMixerEventMap> {

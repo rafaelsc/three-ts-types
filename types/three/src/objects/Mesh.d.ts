@@ -8,7 +8,7 @@ import { Vector3 } from '../math/Vector3';
 export class Mesh<
     TGeometry extends BufferGeometry = BufferGeometry,
     TMaterial extends Material | Material[] = Material | Material[],
-    TEventMap extends Object3DEventMap = Object3DEventMap
+    TEventMap extends Object3DEventMap = Object3DEventMap,
 > extends Object3D<TEventMap> {
     constructor(geometry?: TGeometry, material?: TMaterial);
 
