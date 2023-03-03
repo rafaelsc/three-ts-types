@@ -18,7 +18,8 @@ export class InstancedMesh<
         TEventMap extends InstancedMeshEventMap = InstancedMeshEventMap,
     >
     extends Mesh<TGeometry, TMaterial, TEventMap>
-    implements Disposable {
+    implements Disposable
+{
     constructor(geometry: TGeometry | undefined, material: TMaterial | undefined, count: number);
 
     count: number;

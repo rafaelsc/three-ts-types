@@ -1,11 +1,11 @@
 import { Camera, EventDispatcher, Object3D, Raycaster } from '../../../src/Three';
 
 interface DragControlsEventMap {
-    hoveron: { object: Object3D } ;
-    hoveroff: { object: Object3D } ;
-    dragstart: { object: Object3D } ;
-    drag: { object: Object3D } ;
-    dragend: { object: Object3D } ;
+    hoveron: { object: Object3D };
+    hoveroff: { object: Object3D };
+    dragstart: { object: Object3D };
+    drag: { object: Object3D };
+    dragend: { object: Object3D };
 }
 
 export class DragControls extends EventDispatcher<DragControlsEventMap> {
