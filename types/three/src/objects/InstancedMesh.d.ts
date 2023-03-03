@@ -5,11 +5,18 @@ import { InstancedBufferAttribute } from '../core/InstancedBufferAttribute';
 import { Mesh } from './Mesh';
 import { Matrix4 } from './../math/Matrix4';
 import { Color } from './../math/Color';
+import { EmptyEvent, Object3DEventMap } from '../Three';
+import { Disposable } from '../types';
+
+export interface InstancedMeshEventMap extends Object3DEventMap {
+    dispose: EmptyEvent;
+}
 
 export class InstancedMesh<
     TGeometry extends BufferGeometry = BufferGeometry,
     TMaterial extends Material | Material[] = Material | Material[],
-> extends Mesh<TGeometry, TMaterial> {
+    TEventMap extends InstancedMeshEventMap = InstancedMeshEventMap
+> extends Mesh<TGeometry, TMaterial, TEventMap> implements Disposable {
     constructor(geometry: TGeometry | undefined, material: TMaterial | undefined, count: number);
 
     count: number;
